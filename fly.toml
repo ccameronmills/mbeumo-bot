@@ -1,0 +1,11 @@
+app = "mbeumo-bot"
+
+[deploy]
+  strategy = "immediate"
+
+[processes]
+  app = "python mbeumo_spelling_bot.py"
+
+[mounts]
+  source = "bot_data"
+  destination = "/data"

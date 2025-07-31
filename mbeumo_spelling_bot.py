@@ -24,7 +24,9 @@ MISSPELLINGS_RAW: list[str] = [
 MISSPELLINGS: list[re.Pattern[str]] = [re.compile(pat, re.I) for pat in MISSPELLINGS_RAW]
 
 CORRECT_NAME = "Mbeumo"
-STATS_PATH = Path("stats.json")
+STATS_PATH = Path("/data/stats.json")
+
+LIMIT_TO_SUBMISSION_TITLED = os.getenv("LIMIT_TO_SUBMISSION_TITLED")
 
 REPLY_TEMPLATE = (
     "👋 Just a quick heads‑up — I think you meant **{correct}**, not “{found}”. "
@@ -121,6 +123,12 @@ def main() -> None:
                     break
 
                 STATS.setdefault("misspellings", {})  # for safety
+
+                if LIMIT_TO_SUBMISSION_TITLED:
+                    # Normalize both title and filter for case-insensitive matching
+                    thread_title = (comment.submission.title or "").lower()
+                    if LIMIT_TO_SUBMISSION_TITLED.lower() not in thread_title:
+                        continue
 
                 # Ignore self
                 if comment.author and comment.author.name.lower() == reddit.user.me().name.lower():
