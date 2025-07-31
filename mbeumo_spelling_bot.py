@@ -20,6 +20,7 @@ MISSPELLINGS_RAW: list[str] = [
     r"\bmbeuomo\b",
     r"\bmbeuono\b",
     r"\bmbeoumo\b",
+    r"\bmboomo\b",
 ]
 MISSPELLINGS: list[re.Pattern[str]] = [re.compile(pat, re.I) for pat in MISSPELLINGS_RAW]
 
