@@ -38,8 +38,8 @@ LIMIT_TO_SUBMISSION_TITLED = os.getenv("LIMIT_TO_SUBMISSION_TITLED")
 
 REPLY_TEMPLATE = (
     "👋 Just a quick heads‑up — I think you meant **{correct}**, not “{found}”. " \
-    "\n\n---\n\n*^(If you want to know how to pronounce em-ber-mo's name [here is a Youtube link](https://youtube.com/shorts/pocySXnRwl8?si=2a0UE1vqdANWHT6Q) "
-    "of him saying it)*"
+    "\n\n---\n\n*^([Youtube link](https://youtube.com/shorts/pocySXnRwl8?si=2a0UE1vqdANWHT6Q) "
+    "of Bryan Em-ber-mo saying his name)*"
 )
 
 # ---------------------------------------------------------------------------
