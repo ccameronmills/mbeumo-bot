@@ -36,6 +36,12 @@ STATS_PATH = Path("/data/stats.json")
 
 LIMIT_TO_SUBMISSION_TITLED = os.getenv("LIMIT_TO_SUBMISSION_TITLED")
 
+IGNORE_USERS = set(
+    username.strip().lower()
+    for username in os.getenv("IGNORE_USERS", "").split(",")
+    if username.strip()
+)
+
 REPLY_TEMPLATE = (
     "Apologies but you might have meant **{correct}**, not “{found}”. " \
     "\n\n---\n\n*^([Youtube link](https://youtube.com/shorts/pocySXnRwl8?si=2a0UE1vqdANWHT6Q) "
@@ -139,6 +145,10 @@ def main() -> None:
                     thread_title = (comment.submission.title or "").lower()
                     if LIMIT_TO_SUBMISSION_TITLED.lower() not in thread_title:
                         continue
+
+                # Ignore certain users
+                if comment.author and comment.author.name.lower() in IGNORE_USERS:
+                    continue
 
                 # Ignore self
                 if comment.author and comment.author.name.lower() == reddit.user.me().name.lower():
