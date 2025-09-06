@@ -20,7 +20,6 @@ MISSPELLINGS_RAW: list[str] = [
     r"\bmbeuomo\b",
     r"\bmbeuono\b",
     r"\bmbeoumo\b",
-    r"\bmboomo\b",
     r"\bmbeemo\b",
     r"\bmbeuno\b",
     r"\bmeubomo\b",
